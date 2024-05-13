@@ -1,6 +1,9 @@
 import json, traceback, logging
 
+from django.conf import settings
+
 from core_apps.code_consumer.mq_consumer import data_consumer
+from core_apps.code_consumer.s3_handler import s3_data_handler
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +18,6 @@ def callback(channel, method, properties, body):
         data = body.decode('utf-8')
         print('data: ', data)
         print('data type: ', type(data))
-        
 
     except Exception as e:
         logger.exception(
@@ -23,9 +25,7 @@ def callback(channel, method, properties, body):
         )
         print("\nTraceback Print")
         traceback.print_exc()
-        
+
 def main(): 
     logger.info(f'\n[In MAIN]: In main Func of Callback.')
     data_consumer.consume_messages(callback=callback)
-    
-
