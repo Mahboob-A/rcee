@@ -3,7 +3,6 @@ import json, traceback, logging
 from django.conf import settings
 
 from core_apps.code_consumer.mq_consumer import data_consumer
-from core_apps.code_consumer.s3_handler import s3_data_handler
 
 logger = logging.getLogger(__name__)
 
@@ -11,8 +10,6 @@ logger = logging.getLogger(__name__)
 def callback(channel, method, properties, body):
     try:
         print("callback")
-        # data = json.loads(body.decode("utf-8"))
-        # print('c')
         print("body: ", body)
         print('body type: ', type(body))
         data = body.decode('utf-8')
