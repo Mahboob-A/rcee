@@ -59,6 +59,7 @@ LOCAL_APPS = [
     "core_apps.result_producer",
     "core_apps.code_exe_engine",
     "core_apps.common",
+    "core_apps.rcee_poc",
 ]
 
 
@@ -69,7 +70,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -141,7 +142,7 @@ SITE_ID = 1
 
 # admin url
 ADMIN_URL = env("ADMIN_URL")
-CORS_URLS_REGEX = r"^api/.*$"
+# CORS_URLS_REGEX = r"^api/.*$"
 
 # JWT Signing Key
 JWT_SIGNING_KEY = env("JWT_SIGNING_KEY")
