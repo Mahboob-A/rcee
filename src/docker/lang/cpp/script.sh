@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 user_files_dir="/user-codes/cpp/result"
+
+echo "script run" 
 
 g++ $user_files_dir/main.cpp -o $user_files_dir/main
 compile_status=$?

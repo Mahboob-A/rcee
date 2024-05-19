@@ -1,0 +1,17 @@
+FROM gcc:12.3.0
+
+# non root user and non root file system. 
+# image: algocode/cpp-image/v3 
+RUN useradd -ms /bin/bash cppuser 
+
+COPY . /home/cppuser/user-codes/cpp 
+
+RUN chown -R cppuser:cppuser /home/cppuser/user-codes/cpp 
+
+USER cppuser 
+
+WORKDIR /home/cppuser/user-codes/cpp 
+
+RUN chmod +x /home/cppuser/user-codes/cpp/script.sh 
+
+ENTRYPOINT [ "/home/cppuser/user-codes/cpp/script.sh" ]

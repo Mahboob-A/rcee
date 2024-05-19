@@ -23,7 +23,7 @@ class FileDataProcessorHandler:
 
         # currently return the current-dir/user_codes
         base_dir = os.getcwd()
-        print("base dir: ", base_dir)
+        # print("base dir: ", base_dir)
         user_code_dir = "user_codes"
         user_code_base_dir = os.path.join(base_dir, user_code_dir)
         return user_code_base_dir
@@ -34,9 +34,9 @@ class FileDataProcessorHandler:
         user_code_base_dir = self.get_user_code_base_dir()
         base_dir_with_lang = os.path.join(user_code_base_dir, lang)
 
-        print("user_code_base_dir: ", user_code_base_dir)
-        print()
-        print("base_dir_with_lang: ", base_dir_with_lang)
+        # print("user_code_base_dir: ", user_code_base_dir)
+        # print()
+        # print("base_dir_with_lang: ", base_dir_with_lang)
         return base_dir_with_lang
 
     def get_submission_id(self):
@@ -170,7 +170,7 @@ class FileDataProcessorHandler:
 
     def _process_del_user_dirs_files(self, filepath: str, submission_id: str):
         """Delete the files in unique user dir and the unique user dir."""
-        print("file path in del: ", filepath)
+        # print("file path in del: ", filepath)
 
         try:
             # get the parent dir of the current file: base-dir/user-codes/cpp/uuid/ <-
@@ -240,6 +240,7 @@ class FileDataProcessor(FileDataProcessorHandler):
             test_cases_data = "\n".join(test_cases_data)
 
             submission_id = self.get_submission_id()
+            print('Submission ID: ', submission_id)
 
             result = self._process_write_data(
                 submission_id=str(submission_id),
