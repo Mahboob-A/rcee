@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from core_apps.code_consumer.mq_message_processor import main
+from core_apps.code_consumer.mq_callback import main
 
 
 class Command(BaseCommand):
