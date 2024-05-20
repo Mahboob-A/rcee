@@ -8,6 +8,8 @@ __pycache__/
 .vscode
 .vscode/
 
+user_codes/
+
 # Distribution / packaging
 .Python
 build/
