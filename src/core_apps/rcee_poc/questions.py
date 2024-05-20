@@ -40,7 +40,7 @@ two_sum_data = {
 
 sum_of_a_b_problem = {
     "lang": "cpp",
-    "code": "#include <bits/stdc++.h>\nusing namespace std; \n\nvoid sum_of_a_b(int a, int b)\n{\n    cout << a + b << endl; \n}\n\n\nint main()\n{\n    int t, a, b; \n    cin >> t; \n    \n    while(t--)\n    {\n        cin >> a >> b; \n        sum_of_a_b(a, b); \n    }\n\n    return 0;\n}",
+    "code": "#include <bits/stdc++.h>\nusing namespace std; \n\nvoid sum_of_a(int a, int b)\n{\n    cout << a + b << endl; \n}\n\n\nint main()\n{\n    int t, a, b; \n    cin >> t; \n    \n    while(t--)\n    {\n        cin >> a >> b; \n        sum_of_a_b(a, b); \n    }\n\n    return 0;\n}",
     "input": [
         "10",
         "1 2",

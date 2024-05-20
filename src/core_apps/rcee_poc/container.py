@@ -107,17 +107,21 @@ class CodeContainerHandler:
                 detach=True,
                 privileged=False,
                 network_disabled=True,
-                mem_limit="512m",
+                mem_limit="520m",
                 mem_reservation="300m",
-                memswap_limit="550m",
+                memswap_limit="600m",
                 mem_swappiness=0,
                 # cpus="1.0",  # does not work.
                 cpu_period=100000,  # total 1 cpu. 100 miliseconds
                 cpu_quota=100000,
-                # pids_limit=500,
+                pids_limit=500,
                 ulimits=cont_ulimits,
                 # security_opt=["seccomp", "default"],
             )
+
+        # long polling 
+        # short polling 
+        # server sent event: sse 
 
             try:
                 cont.reload()

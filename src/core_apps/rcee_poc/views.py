@@ -63,17 +63,16 @@ def format_error_message(error_message: str, status_code=None):
     """
     if status_code == 137: 
         return "Memory Limit Exceed"
-
     elif status_code == 124: 
         return "Time Limit Exceed"
-
     elif status_code == 139: 
         return "Index Out Of Bound"
+    elif status_code == 1: 
+        error_message = error_message.split("/")
+        return error_message[8]
     else: 
         # other g++ compilation error
-        # error_message = error_message.split("/")
-        # return error_message[8]
-        print('error msg in formatter: ', error_message)
+        return error_message 
 
 
 def compare_test_cases(output_filepath: str, testcases_filepath: str):
