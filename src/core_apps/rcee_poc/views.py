@@ -122,8 +122,7 @@ class CodeSubmitRobustAPI(APIView):
         # print('\ntype of code: ', type(code))
         # print('\ntype of input: ', type(input_file))
         
-        data = code_exec_engine(request.data)
+        submission_id = uuid.uuid4()
+        data = code_exec_engine(user_codes=request.data, submission_id=submission_id)
         
-        
-
-        return JsonResponse({'submission_id': f"{uuid.uuid4()}", "data": data}, status=200)
+        return JsonResponse({'submission_id': submission_id, "data": data}, status=200)

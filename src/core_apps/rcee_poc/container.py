@@ -11,6 +11,7 @@ from docker.errors import (
 
 from core_apps.rcee_poc.exceptions import TimeLimitExceedException
 
+
 logger = logging.getLogger(__name__)
 
 client = docker.from_env()
@@ -66,22 +67,24 @@ class CodeContainerHandler:
                     "success_message": None,
                 }
             elif status_code == 1:  # other compilation error
-                try: 
+                try:
                     logs = logs.split("/")
                     data = {
                         "status": "Compilation Error",
                         "status_code": status_code,
-                        "error_message": logs[8],  # only get the error messge from: (main.cpp: line number)
+                        "error_message": logs[
+                            8
+                        ],  # only get the error messge from: (main.cpp: line number)
                         "success_message": None,
                     }
-                except Exception as e: 
+                except Exception as e:
                     data = {
                         "status": "Compilation Error",
                         "status_code": status_code,
                         "error_message": logs,
                         "success_message": None,
                     }
-            else:  
+            else:
                 data = {
                     "status": "Compilation Error",
                     "status_code": status_code,
@@ -91,7 +94,7 @@ class CodeContainerHandler:
         return data
 
     def _run_container(
-        self, user_file_parent_dir: str
+        self, user_file_parent_dir: str, submission_id: str = None
     ):  # base-dir/user_codes/lang/uuid
         """Handler method to spawn container."""
         # if the try block is true, then irrespective of status_code of the program
@@ -179,9 +182,10 @@ class CodeContainerHandler:
             cont.stop(timeout=0)
             cont.remove()
 
-        # FIXME Time DEBUG. Delete.
         end_time = self.__get_current_time()
-        print("\n\nTime Taken Inside Container: ", end_time - start_time)
+        logger.info(
+            f"\n\n[Container Total Time]: Submission ID: {submission_id}: {end_time - start_time} Seconds.\n"
+        )
 
         return container_error_message, data
 
@@ -189,11 +193,12 @@ class CodeContainerHandler:
 class CodeContainer(CodeContainerHandler):
     """Container class to spawn docker container to execute user code."""
 
-    def run_container(self, user_file_parent_dir: str):
-        """Entrypoint method - Run a container to compile and run user code in secure docker environment.
+    def run_container(self, user_file_parent_dir: str, submission_id: str = None):
+        """Entrypoint method - Run a container to compile and run user code in secure docker environment and return result.
 
         Args:
-          The host directory where the user codes files are created.
+          Str: user_file_parent_dir: The host directory where the user codes files are created.
+          Str: submission_id: submission id of the user.
 
         Return:
           container_error_message:
@@ -204,9 +209,12 @@ class CodeContainer(CodeContainerHandler):
               if try block is true, contains the user code run result, including any g++ errors.
               if no compilation error, the output is saved in the output.txt file.
         """
+
+        # Run the container and get the result.
         container_error_message, data = self._run_container(
-            user_file_parent_dir=user_file_parent_dir
+            user_file_parent_dir=user_file_parent_dir, submission_id=submission_id
         )
+
         return container_error_message, data
 
 
