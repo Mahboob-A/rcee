@@ -145,7 +145,6 @@ class CodeContainerHandler:
             except Exception as e:
                 # Normal program should complete before the timeout in .wait()
                 # if the container exit after timeout, indicates TLE.
-                print('in inside excep: ', str(e))
                 cont.stop(timeout=0)
                 raise TimeLimitExceedException("Time Limit Exceed", status_code=124)
 
