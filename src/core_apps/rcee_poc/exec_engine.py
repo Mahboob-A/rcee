@@ -13,31 +13,6 @@ from core_apps.rcee_poc.container import code_container
 from core_apps.rcee_poc.compare_testcases import compare_output_and_testcases
 
 
-def format_error_message(error_message: str, status_code=None):
-    """Format the error message to return to the user.
-
-          Only return the main.cpp: part.
-
-          example error message:
-    /user-codes/cpp/result/main.cpp: In function 'int main()':
-    /user-codes/cpp/result/main.cpp:17:9: error: 'sol' was not declared in this scope; did you mean 'solp'?
-       17 |         sol(num);
-          |         ^~~
-          |         solp
-    """
-    if status_code == 137:
-        return "Memory Limit Exceed"
-    elif status_code == 124:
-        return "Time Limit Exceed"
-    elif status_code == 139:
-        return "Index Out Of Bound"
-    elif status_code == 1:
-        error_message = error_message.split("/")
-        return error_message[8]
-    else:
-        # other g++ compilation error
-        return error_message
-
 
 def print_and_get_formatted_messages(
     status_code: int, status: str, success_message: str, error_message: str, verdict: str=None 
@@ -133,9 +108,6 @@ def test_code_exec():
                 return return_data
 
             else:  #  compilation error or other error. output.txt is empty.
-                # formatted_error_message = format_error_message(
-                #     error_message=error_message, status_code=status_code
-                # )
                 return_data = print_and_get_formatted_messages(
                     status_code=status_code,
                     status=status,
@@ -173,9 +145,6 @@ def code_exec_engine(user_codes: dict):
     Return:
         Dict: execution result
     """
-
-    start_time = time.time()
-
     # write the user codes in file system
     result = file_processor.write_data(data=user_codes)  # pass the code here.
 
@@ -229,17 +198,12 @@ def code_exec_engine(user_codes: dict):
                 return return_data
 
             else:  #  compilation error or other error. output.txt is empty.
-                # formatted_error_message = format_error_message(
-                #     error_message=error_message, status_code=status_code
-                # )
                 return_data = print_and_get_formatted_messages(
                     status_code=status_code,
                     status=status,
                     success_message=success_message,
                     error_message=error_message,
                 )
-            end_time = time.time()
-            print("\n\bViews.py time: ", end_time - start_time)
             return return_data
         else:  # some system and docker related error, TLE, Memory LImit etc.
             if data.get("status_code") == 124:
@@ -251,7 +215,7 @@ def code_exec_engine(user_codes: dict):
                 )
                 return return_data 
             else:
-                print(container_error_message)
+                # print(container_error_message)
                 return container_error_message 
 
     else:  # data write in file system is unsuccessfu.
