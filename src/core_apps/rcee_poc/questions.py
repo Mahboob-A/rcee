@@ -52,7 +52,7 @@ sum_of_a_b_problem = {
         "150 50",
         "100 200",
         "110 90",
-        "1000 2000",
+        "1000 2000"
     ],
     "testcases": ["3", "12", "10", "15", "30", "55", "200", "300", "200", "300"],
 }
@@ -72,7 +72,7 @@ hello_world_with_num_data_problem = {
         "Hello World: 7",
         "Hello World: 8",
         "Hello World: 9",
-        "Hello World: 10",
+        "Hello World: 10"
     ],
 }
 
@@ -81,16 +81,16 @@ time_limit_exceed_problem = {
     "code": "//just a value is incremented infinitely\n\n#include <iostream>\n\nint main() {\n int a = 0; \n while(1) {\n a++;  \n  }\n\n  return 0;\n}",
     "input": ["10", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     "testcases": [
-        "Hello World: 1",
-        "Hello World: 2",
-        "Hello World: 3",
-        "Hello World: 4",
-        "Hello World: 5",
-        "Hello World: 6",
-        "Hello World: 7",
-        "Hello World: 8",
-        "Hello World: 9",
-        "Hello World: 11",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11"
     ],
 }
 
@@ -100,16 +100,16 @@ memory_limit_exceed_problem = {
     "code": "//creates many long long array of large size\n\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n  int t, n;\n\n long long m = 100000;\n\n    while (1) {\n        long long arr[m]; \nm = m*5;\n   }\n\n  return 0;\n}",
     "input": ["10", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     "testcases": [
-        "Hello World: 1",
-        "Hello World: 2",
-        "Hello World: 3",
-        "Hello World: 4",
-        "Hello World: 5",
-        "Hello World: 6",
-        "Hello World: 7",
-        "Hello World: 8",
-        "Hello World: 9",
-        "Hello World: 11",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "11"
     ],
 }
 
@@ -139,8 +139,3 @@ def make_code_dict():
         "input": ["10", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     }
     return data
-
-
-
-
-        
