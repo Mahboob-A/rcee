@@ -9,7 +9,7 @@ from docker.errors import (
     ImageLoadError,
 )
 
-from exceptions import TimeLimitExceedException
+from core_apps.rcee_poc.exceptions import TimeLimitExceedException
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ class CodeContainerHandler:
             }
         elif status_code == 139:
             data = {
-                "status": "Index Out Of Bound",
+                "status": "Segmentation Fault",
                 "status_code": status_code,
                 "error_message": logs,
                 "success_message": None,
@@ -65,7 +65,23 @@ class CodeContainerHandler:
                     "error_message": "Memory Limit Exceed",
                     "success_message": None,
                 }
-            else:  # other compilation error
+            elif status_code == 1:  # other compilation error
+                try: 
+                    logs = logs.split("/")
+                    data = {
+                        "status": "Compilation Error",
+                        "status_code": status_code,
+                        "error_message": logs[8],  # only get the error messge from: (main.cpp: line number)
+                        "success_message": None,
+                    }
+                except Exception as e: 
+                    data = {
+                        "status": "Compilation Error",
+                        "status_code": status_code,
+                        "error_message": logs,
+                        "success_message": None,
+                    }
+            else:  
                 data = {
                     "status": "Compilation Error",
                     "status_code": status_code,
@@ -107,35 +123,35 @@ class CodeContainerHandler:
                 detach=True,
                 privileged=False,
                 network_disabled=True,
-                mem_limit="520m",
-                mem_reservation="300m",
-                memswap_limit="600m",
+                mem_limit="300m",
+                mem_reservation="200m",
+                memswap_limit="300m",
                 mem_swappiness=0,
                 # cpus="1.0",  # does not work.
-                cpu_period=100000,  # total 1 cpu. 100 miliseconds
-                cpu_quota=100000,
-                pids_limit=500,
+                cpu_period=100000,
+                cpu_quota=100000,  # total 1 cpu. 100 miliseconds
+                pids_limit=50,
                 ulimits=cont_ulimits,
                 # security_opt=["seccomp", "default"],
             )
 
-        # long polling 
-        # short polling 
-        # server sent event: sse 
+            # long polling
+            # short polling
+            # server sent event: sse
 
             try:
                 cont.reload()
-                result = cont.wait(timeout=5)
+                result = cont.wait(timeout=6)
             except Exception as e:
                 # Normal program should complete before the timeout in .wait()
                 # if the container exit after timeout, indicates TLE.
+                print('in inside excep: ', str(e))
                 cont.stop(timeout=0)
                 raise TimeLimitExceedException("Time Limit Exceed", status_code=124)
 
             cont.reload()
             logs = cont.logs().decode("utf-8")
             status_code = result.get("StatusCode")
-            # print(cont.attrs)
 
             # formatted data. as control here, the code compiled and run.
             data = self.__get_formated_data(status_code=status_code, logs=logs)

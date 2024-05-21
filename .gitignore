@@ -9,6 +9,9 @@ __pycache__/
 .vscode/
 
 user_codes/
+user-codes/
+user-files/
+1234/
 
 # Distribution / packaging
 .Python
