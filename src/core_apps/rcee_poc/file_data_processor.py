@@ -18,12 +18,9 @@ class FileDataProcessorHandler:
     def get_user_code_base_dir(self):
         """return the base-dir/user_codes directory"""
 
-        # TODO use the src/user_codes dir in prod
-        # base_dir = settings.BASE_DIR
+        base_dir = settings.BASE_DIR
+        logger.info(f"base dir: {base_dir}")
 
-        # currently return the current-dir/user_codes
-        base_dir = os.getcwd()
-        # print("base dir: ", base_dir)
         user_code_dir = "user_codes"
         user_code_base_dir = os.path.join(base_dir, user_code_dir)
         return user_code_base_dir
@@ -34,13 +31,7 @@ class FileDataProcessorHandler:
         user_code_base_dir = self.get_user_code_base_dir()
         base_dir_with_lang = os.path.join(user_code_base_dir, lang)
 
-        # print("user_code_base_dir: ", user_code_base_dir)
-        # print()
-        # print("base_dir_with_lang: ", base_dir_with_lang)
         return base_dir_with_lang
-
-    def get_submission_id(self):
-        return uuid.uuid4()
 
     def _process_write_data(
         self, submission_id: str, lang: str, cpp_code: str, input_data: str, testcases_data: str 
@@ -164,17 +155,25 @@ class FileDataProcessorHandler:
 
         # return the file paths
         logger.info(
-            f"\n[SUCCESS: ALL FILE CREATE]: All related files for submission ID {submission_id} CREATED Successfully."
+            f"\n\n\n\n[SUCCESS: ALL FILE CREATE]: All related files for submission ID {submission_id} CREATED Successfully."
         )
         return True, code_filepath, input_filepath, output_filepath, testcases_filepath, success_message
 
     def _process_del_user_dirs_files(self, filepath: str, submission_id: str):
-        """Delete the files in unique user dir and the unique user dir."""
-        # print("file path in del: ", filepath)
-
+        """Delete the files in unique user dir and then the unique user dir.
+        """
         try:
-            # get the parent dir of the current file: base-dir/user-codes/cpp/uuid/ <-
-            parent_dir = os.path.dirname(filepath)
+
+            # check if the filepath is an absolute file path like: base-dir/user-codes/cpp/uuid/main.cpp
+            if os.path.isfile(filepath): 
+                # get the parent dir of the current file: base-dir/user-codes/lang/uuid <-
+                parent_dir = os.path.dirname(filepath)
+            else: # the filepath is a parent directory like: base-dir/user-codes/lang/uuid
+                # to get the absolute dir so that dirname always returns the base-dir/user-codes/lang/uuid directory
+                # adding "/" otherwise, the parent dir might be: base-dir/user-codes/lang <-
+                # hence, whether the filepath is a absolute filepath, or a parent dir, it gets the parent dir of: base-dir/user-codes/lang/uuid <-
+                filepath = f"{filepath}/"
+                parent_dir = os.path.dirname(filepath)
 
             # delete all the files in the parent dir.
             for filename in os.listdir(parent_dir):
@@ -182,13 +181,14 @@ class FileDataProcessorHandler:
 
             # delete the empty user directory: base-dir/user-codes/cpp/uuid
             os.rmdir(parent_dir)
+
             logger.info(
-                f"\n[SUCCESS: DIR DELETE]: User Dir and all files of submission ID: {submission_id} DELETED Successful!"
+                f"\n\n[SUCCESS: DIR DELETE]: User Dir and all files of submission ID: {submission_id} DELETED Successfully!"
             )
             return True
         except Exception as e:
             logger.error(
-                f"\n[ERROR: DIR DELETE]: User Dir and all files submission ID: {submission_id} DETERION Unsuccessful"
+                f"\n\b[ERROR: DIR DELETE]: User Dir and all files submission ID: {submission_id} DELETION Unsuccessful"
             )
             logger.exception(f"\n[EXCEPTION]: {str(e)}")
             return False
@@ -199,36 +199,46 @@ class FileDataProcessor(FileDataProcessorHandler):
     The image takes the files from service container to compile the code
     """
 
-    def del_user_dirs_files(self, filepath: str, submission_id: str):
-        """Main entrypoint to DELETE User Dirs and Files
+    def del_user_dirs_files(self, filepath: str, submission_id: str=None):
+        """DELETE User Dirs and Files 
 
         Args:
-            filepath: path of the files where the files are located.
-            submission_id: the submission ID.
+            Str:
+                filepath: either the absolute filepath or the parent directory of the filepaht.
+            Str:
+                submission_id: the submission id of the user code submission.
 
         Return:
-            Success:
-                Unique user dir with submission ID DELETED along with files.
-                True
-            Fail:
-                Unique user dir with submission ID are NOT DELETED along with files.
-                False
+            Bool:
+                True:
+                    Unique user directory along with files are deleted.
+                False:
+                    Unique user directory along with files could not be deleted.
         """
+
+        # submission id only for logging. 
+        if submission_id is None: 
+            submission_id = "SUBMISSION ID NOT PROVIDED"
+
         return self._process_del_user_dirs_files(
             filepath=filepath, submission_id=submission_id
         )
 
-    def write_data(self, data: dict):
+    def write_data(self, data: dict, submission_id: str):
         """Main entrypoint of class to write data in filesystem
 
         Args:
-            data payload from client as dict.
+            Dict: 
+                data: payload from client as dict.
+            Str: 
+                submission_id: Unique submission id for the code submission.  
 
         Return:
-            Success:
-                True, Code File Path, Input File Path, Output File Path, Success Message
-            Fail:
-                None, Error Message for Failure
+            Bool:
+                True: 
+                    True, Code File Path, Input File Path, Output File Path, Success Message
+                False:
+                    None, Error Message for Failure
         """
         if "lang" in data and "code" in data and data["lang"] == "cpp":
             cpp_code = data.get("code")
@@ -238,9 +248,6 @@ class FileDataProcessor(FileDataProcessorHandler):
             input_data = "\n".join(input_data)
             test_cases_data = data.get('testcases')
             test_cases_data = "\n".join(test_cases_data)
-
-            submission_id = self.get_submission_id()
-            print('Submission ID: ', submission_id)
 
             result = self._process_write_data(
                 submission_id=str(submission_id),

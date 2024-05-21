@@ -21,8 +21,8 @@ def delete_dirs_files():
 
     #     now delete the dirs
     head, tail = os.path.split(file_path)
-    print('head: ', head)
-    print('tail: ', tail)
+    print("head: ", head)
+    print("tail: ", tail)
     os.removedirs(head)
 
 
@@ -112,3 +112,24 @@ json_data = {
 # Replace with your actual output directory (potentially shared with container)
 # output_dir = os.getcwd()
 # extract_and_save_cpp_code(json_data, output_dir)
+
+#################################################################3
+
+# check if already parent dir is passed, what is the output if again parent dir is extracted from the path.
+user_code_parent_dir = "/home/mehboob/module-codes/algocode/remote-code-exec/src/user_codes/cpp/1af556c5-f034-44a4-a742-ebfdb65f410d/////////"
+
+parent_dir = os.path.dirname(user_code_parent_dir)
+
+
+if os.path.isfile(user_code_parent_dir): 
+    print('user_code_parent_dir: is a file', user_code_parent_dir)
+else: 
+    print("user_code_parent_dir: is not a file: ", user_code_parent_dir)
+
+if os.path.isfile(parent_dir):
+    print("parent_dir: is a file", parent_dir)
+else:
+    print("parent_dir: is not a file: ", parent_dir)
+
+
+print('parent dir: ', parent_dir)
