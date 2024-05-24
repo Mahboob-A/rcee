@@ -1,16 +1,15 @@
-#!/bin/bash
+#!/bin/bash 
 
-user_files_dir="/user-codes/cpp/result"
+# Judge container volume mount and Sibling container volume mount is same. Hence, 
+# the full filepath in Judge container is the filepath for the  Sibling container too. 
 
-echo "script run" 
-
-g++ $user_files_dir/main.cpp -o $user_files_dir/main
+g++ $user_file_parent_dir/main.cpp -o $user_file_parent_dir/main 
 compile_status=$?
 
-if [ $compile_status -ne 0 ]; then
-    echo "Compilation failed"
-    exit $compile_status
+if [ $compile_status -ne 0 ]; then 
+    echo "Compile Failed"
+    exit $compile_status 
 fi
 
-# Run the compiled executable
-$user_files_dir/main < $user_files_dir/input.txt > $user_files_dir/output.txt
+# run the binary 
+$user_file_parent_dir/main < $user_file_parent_dir/input.txt > $user_file_parent_dir/output.txt 
