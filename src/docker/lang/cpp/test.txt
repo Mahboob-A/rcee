@@ -1,2 +1,0 @@
-g++ ./user_codes/cpp/$ID/main.cpp -o main
-./main < ./user_codes/cpp/$ID/input.txt > ./user_codes/cpp/$ID/output.txt
