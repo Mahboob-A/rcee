@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('submit/', include('core_apps.rcee_poc.urls')), 
+    path('submit/', include('core_apps.rce_engine.urls')), 
 ]
