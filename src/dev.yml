@@ -1,0 +1,32 @@
+# version: "3.9"
+
+services: 
+  judge: 
+    restart: always 
+    build: 
+      context: . 
+      dockerfile: ./docker/dev/django/Dockerfile 
+    volumes: 
+        - /var/run/docker.sock:/var/run/docker.sock 
+        - .:/app:z 
+        - user_code_files:/app/user-files
+    ports:
+        - "8000:8000"
+    env_file: 
+        - ./.envs/.dev/.django 
+    expose: 
+      - "8000"
+    networks: 
+        - judge-network 
+
+
+
+
+
+networks:
+  judge-network: 
+    driver: bridge 
+
+volumes:
+  user_code_files: 
+    external: true 
