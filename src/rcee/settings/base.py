@@ -48,18 +48,15 @@ DJANGO_APPS = [
 
 THIRD_PARTH_APPS = [
     "rest_framework",
-    "django_filters",
     "corsheaders",
     "drf_yasg",
-    "taggit",
 ]
 
 LOCAL_APPS = [
     "core_apps.code_consumer",
     "core_apps.result_producer",
-    "core_apps.code_exe_engine",
     "core_apps.common",
-    "core_apps.rcee_poc",
+    "core_apps.rce_engine",
 ]
 
 
