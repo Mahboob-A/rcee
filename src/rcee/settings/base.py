@@ -52,10 +52,9 @@ THIRD_PARTH_APPS = [
 ]
 
 LOCAL_APPS = [
-    "core_apps.code_consumer",
-    "core_apps.result_producer",
     "core_apps.common",
-    "core_apps.rce_engine",
+    "core_apps.mq_manager",
+    "core_apps.rce_engine"
 ]
 
 
