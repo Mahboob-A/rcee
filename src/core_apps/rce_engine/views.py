@@ -25,6 +25,8 @@ class CodeSubmitAPI(APIView):
         input_file = request.data.get("input")
         testcases = request.data.get("testcases")
 
+        print('request.data: ', request.data)
+        print('request.data type: ', type(request.data))
         submission_id = uuid.uuid4()
         data = code_execution_engine.exec_code(
             user_codes=request.data, submission_id=submission_id
