@@ -66,13 +66,10 @@ class FileDataProcessorHandler:
         # unique user main dir path: base-dir/user_codes/lang/uuid4
         main_user_file_dir = os.path.join(main_lang_dir, f"{submission_id}")
 
-        print(
-            f"Entrypoint of User's Unique Data Dir Judge Container Mount Point:  {main_user_file_dir}"
-        )
-
         try:
             # create the directories: base-dir/user_codes/lang/uuid4
             os.makedirs(main_user_file_dir)
+            logger.info(f"Entrypoint of User's Unique Data Dir Judge Container Mount Point:  {main_user_file_dir}")
         except (FileExistsError, PermissionError, OSError, Exception) as e:
             logger.error(
                 f"\n[ERROR: DIR CREATE FAILED]: Main User File Dir: {main_user_file_dir} Could Not Be Created To FIle System"
@@ -80,8 +77,10 @@ class FileDataProcessorHandler:
             logger.exception(f"\n[EXCEPTION: {str(e)}]")
             error_message = "user-dir-create-error"
             return None, error_message
+        
 
-        # create main_user_file_dir: base-dir/user_codes/lang/uuid4
+
+        # create files under main_user_file_dir: base-dir/user_codes/lang/uuid4
         try:
             # create the code file: base-dir/user_codes/lang/uuid4/main.cpp
             os.mknod(f"{main_user_file_dir}/{code_file_name}")
@@ -269,11 +268,9 @@ class FileDataProcessor(FileDataProcessorHandler, metaclass=SingletonMeta):
             cpp_code = data.get("code")
 
             lang = data.get("lang")
-            input_data = data.get("input")
-            input_data = "\n".join(input_data)
+            input_data = data.get("inputs")
             test_cases_data = data.get("testcases")
-            test_cases_data = "\n".join(test_cases_data)
-
+            
             result = self._process_write_data(
                 submission_id=str(submission_id),
                 lang=lang,

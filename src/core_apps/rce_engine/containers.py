@@ -217,7 +217,7 @@ class CodeContainer(CodeContainerHandler, metaclass=SingletonMeta):
               if no compilation error, the output is saved in the output.txt file.
         """
 
-        # Run the container and get the result.
+        # Run the container and get the result. Judge volume mount and Sibling volume mount is same. 
         container_error_message, data = self._run_container(
             user_file_parent_dir=user_file_parent_dir, submission_id=submission_id
         )
