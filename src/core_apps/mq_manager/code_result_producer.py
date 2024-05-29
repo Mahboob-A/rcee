@@ -1,18 +1,20 @@
 # python
-import os, json, logging
-
-# django
-from django.conf import settings
+import json
+import logging
+import os
 
 # pika
 import pika
+
+# django
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
 
 class CloudAMQPHandler:
-    """CloudAMQP Handler Class to Declare Exchange and Queue 
-        for Code Result Publication
+    """CloudAMQP Handler Class to Declare Exchange and Queue
+    for Code Result Publication
     """
 
     def __init__(self) -> None:
@@ -41,7 +43,7 @@ class CloudAMQPHandler:
 
 class CodeEXECResultPublisherMQ(CloudAMQPHandler):
     """Interface class to publish data to MQ
-        Publish Code Execution Result to Result Queue 
+    Publish Code Execution Result to Result Queue
     """
 
     def publish_data(self, result_data: json, username: str) -> None:

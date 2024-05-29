@@ -1,21 +1,19 @@
-import logging, time
+import logging
+import time
 
-import docker
 from docker.errors import (
+    APIError,
     ContainerError,
     ContextNotFound,
-    APIError,
-    ImageNotFound,
     ImageLoadError,
+    ImageNotFound,
 )
 
+import docker
 from core_apps.rce_engine.exceptions import TimeLimitExceedException
 from core_apps.rce_engine.singleton import SingletonMeta
 
-
 logger = logging.getLogger(__name__)
-
-
 
 
 class CodeContainerHandler:
@@ -217,7 +215,7 @@ class CodeContainer(CodeContainerHandler, metaclass=SingletonMeta):
               if no compilation error, the output is saved in the output.txt file.
         """
 
-        # Run the container and get the result. Judge volume mount and Sibling volume mount is same. 
+        # Run the container and get the result. Judge volume mount and Sibling volume mount is same.
         container_error_message, data = self._run_container(
             user_file_parent_dir=user_file_parent_dir, submission_id=submission_id
         )

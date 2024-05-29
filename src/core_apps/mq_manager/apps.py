@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.utils.translation import gettext_lazy as _ 
+from django.utils.translation import gettext_lazy as _
 
 
 class MqManagerConfig(AppConfig):
@@ -7,5 +7,3 @@ class MqManagerConfig(AppConfig):
     name = "core_apps.mq_manager"
     verbose_name = _("MQ Manager")
     verbose_name_plural = _("MQ Managers")
-    
-    

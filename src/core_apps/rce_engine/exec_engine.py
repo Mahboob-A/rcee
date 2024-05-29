@@ -1,12 +1,12 @@
 # exec_engine.py
 
-import os, logging
+import logging
+import os
 
-from core_apps.rce_engine.singleton import SingletonMeta
-from core_apps.rce_engine.file_data_processor import FileDataProcessor
-from core_apps.rce_engine.containers import CodeContainer
 from core_apps.rce_engine.compare_testcases import TestcaseCompare
-
+from core_apps.rce_engine.containers import CodeContainer
+from core_apps.rce_engine.file_data_processor import FileDataProcessor
+from core_apps.rce_engine.singleton import SingletonMeta
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +26,6 @@ class CodeExecutionEngineHandler:
         error_message: str,
         verdict: str = None,
     ):
-
         if verdict is not None:  # verdict (AC or WA)
             data = {
                 "result": verdict,
