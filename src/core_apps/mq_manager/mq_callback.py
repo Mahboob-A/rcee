@@ -1,11 +1,12 @@
-import json, traceback, logging
-
-
-# MQ Code Submission Consume
-from core_apps.mq_manager.code_submission_consumer import code_submission_consumer_mq
+import json
+import logging
+import traceback
 
 # MQ Code Execution Result Publish
 from core_apps.mq_manager.code_result_producer import result_producer_mq
+
+# MQ Code Submission Consume
+from core_apps.mq_manager.code_submission_consumer import code_submission_consumer_mq
 
 # RCE Engine
 from core_apps.rce_engine.exec_engine import code_execution_engine

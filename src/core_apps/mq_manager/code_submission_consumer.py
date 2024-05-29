@@ -2,12 +2,11 @@
 import logging
 from typing import Callable
 
-# django
-from django.conf import settings
-
 # pika
 import pika
 
+# django
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 

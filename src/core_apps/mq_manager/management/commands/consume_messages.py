@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from core_apps.mq_manager.mq_callback import main
 
 

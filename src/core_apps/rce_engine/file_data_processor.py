@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 
 from core_apps.rce_engine.singleton import SingletonMeta
 

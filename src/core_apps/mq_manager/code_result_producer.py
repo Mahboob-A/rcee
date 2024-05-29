@@ -1,11 +1,13 @@
 # python
-import os, json, logging
-
-# django
-from django.conf import settings
+import json
+import logging
+import os
 
 # pika
 import pika
+
+# django
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
