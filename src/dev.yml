@@ -1,7 +1,7 @@
 # version: "3.9"
 
 services: 
-  judge: 
+  rce-judge-engine: 
     restart: always 
     build: 
       context: . 
@@ -18,8 +18,6 @@ services:
       - "8000"
     networks: 
         - judge-network 
-
-
 
 
 

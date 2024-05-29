@@ -26,7 +26,6 @@ class CodeExecutionEngineHandler:
         error_message: str,
         verdict: str = None,
     ):
-
         if verdict is not None:  # verdict (AC or WA)
             data = {
                 "result": verdict,

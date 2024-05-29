@@ -1,35 +1,39 @@
-# views.py
+# # views.py
 
-import uuid
+"""
+No need for API in RCE Engine. It is meant for utmost isolation for security. 
+RCE Engine will consume from MQ and push result bak to MQ. 
+"""
+# import uuid
 
-from django.http import JsonResponse
+# from django.http import JsonResponse
 
-from rest_framework.views import APIView
-
-
-# object to execute code metaclass=SignletonMeta
-from core_apps.rce_engine.exec_engine import code_execution_engine
+# from rest_framework.views import APIView
 
 
-class CodeSubmitAPI(APIView):
-    """An API to test the  implementation of the Online Judge.
+# # object to execute code metaclass=SignletonMeta
+# from core_apps.rce_engine.exec_engine import code_execution_engine
 
-        For testing: Currently returns the answer to the client. 
-    """
 
-    def post(self, request):
-        """Submit code to execute in secure docker container."""
+# class CodeSubmitAPI(APIView):
+#     """An API to test the  implementation of the Online Judge.
 
-        lang = request.data.get("lang")
-        code = request.data.get("code")
-        input_file = request.data.get("input")
-        testcases = request.data.get("testcases")
+#         For testing: Currently returns the answer to the client.
+#     """
 
-        print('request.data: ', request.data)
-        print('request.data type: ', type(request.data))
-        submission_id = uuid.uuid4()
-        data = code_execution_engine.exec_code(
-            user_codes=request.data, submission_id=submission_id
-        )
+#     def post(self, request):
+#         """Submit code to execute in secure docker container."""
 
-        return JsonResponse({"submission_id": submission_id, "data": data}, status=200)
+#         lang = request.data.get("lang")
+#         code = request.data.get("code")
+#         input_file = request.data.get("input")
+#         testcases = request.data.get("testcases")
+
+#         print('request.data: ', request.data)
+#         print('request.data type: ', type(request.data))
+#         submission_id = uuid.uuid4()
+#         data = code_execution_engine.exec_code(
+#             user_codes=request.data, submission_id=submission_id
+#         )
+
+#         return JsonResponse({"submission_id": submission_id, "data": data}, status=200)

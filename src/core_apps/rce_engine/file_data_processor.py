@@ -69,7 +69,9 @@ class FileDataProcessorHandler:
         try:
             # create the directories: base-dir/user_codes/lang/uuid4
             os.makedirs(main_user_file_dir)
-            logger.info(f"Entrypoint of User's Unique Data Dir Judge Container Mount Point:  {main_user_file_dir}")
+            logger.info(
+                f"Entrypoint of User's Unique Data Dir Judge Container Mount Point:  {main_user_file_dir}"
+            )
         except (FileExistsError, PermissionError, OSError, Exception) as e:
             logger.error(
                 f"\n[ERROR: DIR CREATE FAILED]: Main User File Dir: {main_user_file_dir} Could Not Be Created To FIle System"
@@ -77,8 +79,6 @@ class FileDataProcessorHandler:
             logger.exception(f"\n[EXCEPTION: {str(e)}]")
             error_message = "user-dir-create-error"
             return None, error_message
-        
-
 
         # create files under main_user_file_dir: base-dir/user_codes/lang/uuid4
         try:
@@ -187,7 +187,6 @@ class FileDataProcessorHandler:
     def _process_del_user_dirs_files(self, filepath: str, submission_id: str):
         """Delete the files in unique user dir and then the unique user dir."""
         try:
-
             # check if the filepath is an absolute file path like: base-dir/user-codes/cpp/uuid/main.cpp
             if os.path.isfile(filepath):
                 # get the parent dir of the current file: base-dir/user-codes/lang/uuid <-
@@ -270,7 +269,7 @@ class FileDataProcessor(FileDataProcessorHandler, metaclass=SingletonMeta):
             lang = data.get("lang")
             input_data = data.get("inputs")
             test_cases_data = data.get("testcases")
-            
+
             result = self._process_write_data(
                 submission_id=str(submission_id),
                 lang=lang,

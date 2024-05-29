@@ -51,11 +51,7 @@ THIRD_PARTH_APPS = [
     "corsheaders",
 ]
 
-LOCAL_APPS = [
-    "core_apps.common",
-    "core_apps.mq_manager",
-    "core_apps.rce_engine"
-]
+LOCAL_APPS = ["core_apps.common", "core_apps.mq_manager", "core_apps.rce_engine"]
 
 
 # installed apps
