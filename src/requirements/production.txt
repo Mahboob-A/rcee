@@ -1,0 +1,7 @@
+-r base.txt 
+
+psycopg2-binary==2.9.5
+gunicorn==22.0.0
+
+# to serve static files wihtout need of separate web server eg: nginx 
+whitenoise==6.6.0
