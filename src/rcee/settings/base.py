@@ -17,7 +17,7 @@ import environ
 env = environ.Env()
 
 # TODO hange the env type: .dev for development. .production for production
-ENVIRONMENT_TYPE = ".production"
+ENVIRONMENT_TYPE = ".dev"
 
 # this effectively pointing to the SRC dir where the manage.py file is located.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -61,9 +61,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTH_APPS + LOCAL_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
-    # "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -100,7 +99,7 @@ DATABASES = {
     }
 }
 
-# TODO set prod Database
+# NOTE no produciton database is needed. 
 # DATABASES = {"default": env.db("DATABASE_URL")}
 
 
@@ -133,12 +132,11 @@ USE_TZ = True
 
 SITE_ID = 1
 
-# admin url
-ADMIN_URL = env("ADMIN_URL")
-# CORS_URLS_REGEX = r"^api/.*$"
+# NOTE No admin url is needed as there are no model in the service and as it is only meant to executing the cpp codes 
+# consumed from the cpp code submission queue. 
+# ADMIN_URL = env("ADMIN_URL")
 
-# JWT Signing Key
-JWT_SIGNING_KEY = env("JWT_SIGNING_KEY")
+
 
 # static and media urls
 STATIC_URL = "/static/"
@@ -151,31 +149,3 @@ MEDIA_ROOT = str(BASE_DIR / "mediafiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# logging
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s  %(process)d %(thread)d %(message)s "
-        }
-    },
-    "handlers": {
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        }
-    },
-    "root": {
-        "level": "INFO",
-        "handlers": ["console"],
-    },
-    # uncomment for django database query logs
-    "loggers": {
-        "django.db": {
-            "level": "DEBUG",
-            "handlers": ["console"],
-        }
-    },
-}
