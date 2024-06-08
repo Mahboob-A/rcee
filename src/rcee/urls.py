@@ -19,5 +19,4 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("submit/", include("core_apps.rce_engine.urls")),
 ]
