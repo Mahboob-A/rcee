@@ -1,0 +1,9 @@
+.idea
+venv
+venv/
+.gitignore
+.vscode 
+htmlcov/
+__pycache__/
+mediafiles/
+staticfiles/
