@@ -27,16 +27,16 @@ class CloudAMQPHandler:
     def prepare_exchange_and_queue(self) -> None:
         # exchange declare
         self.channel.exchange_declare(
-            exchange=settings.CODE_SUBMISSION_EXCHANGE_NAME,
-            exchange_type=settings.CODE_SUBMISSION_EXCHANGE_TYPE,
+            exchange=settings.CPP_CODE_SUBMISSION_EXCHANGE_NAME,
+            exchange_type=settings.CPP_CODE_SUBMISSION_EXCHANGE_TYPE,
         )
         # declare queue
-        self.channel.queue_declare(queue=settings.CODE_SUBMISSION_QUEUE_NAME)
+        self.channel.queue_declare(queue=settings.CPP_CODE_SUBMISSION_QUEUE_NAME)
         # binding exchange and queue
         self.channel.queue_bind(
-            settings.CODE_SUBMISSION_QUEUE_NAME,
-            settings.CODE_SUBMISSION_EXCHANGE_NAME,
-            settings.CODE_SUBMISSION_BINDING_KEY,
+            settings.CPP_CODE_SUBMISSION_QUEUE_NAME,
+            settings.CPP_CODE_SUBMISSION_EXCHANGE_NAME,
+            settings.CPP_CODE_SUBMISSION_BINDING_KEY,
         )
 
 
@@ -51,7 +51,7 @@ class CodeSubmissionConsumerMQ(CloudAMQPHandler):
             self.prepare_exchange_and_queue()
 
             self.channel.basic_consume(
-                settings.CODE_SUBMISSION_QUEUE_NAME, callback, auto_ack=True
+                settings.CPP_CODE_SUBMISSION_QUEUE_NAME, callback, auto_ack=True
             )
 
             logger.info(
