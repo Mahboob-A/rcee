@@ -31,6 +31,8 @@ MANIFEST
 staticfiles/
 .mediafiles
 mediafiles/
+user-files/
+user-codes/
 
 
 # PyInstaller

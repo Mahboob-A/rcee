@@ -58,13 +58,13 @@ class CodeEXECResultPublisherMQ(CloudAMQPHandler):
                 body=result_data,
             )
             logger.info(
-                f"\n[MQ SUCCESS]: Code Execution Result for UN: '{username}' Successfully Published to Result MQ."
+                f"\n\n[MQ Code EXEC Result Publish SUCCESS]: Code Execution Result for UN: '{username}' Successfully Published to Result MQ."
             )
             message = "success"
             return True, message
         except Exception as e:
             logger.exception(
-                f"\n[MQ ERROR]: Code Execution Result for UN: '{username}' Could not be published to Result MQ.\n[MQ EXCEPTION]: {str(e)}"
+                f"\n\n[MQ Code EXEC Result Publish ERROR]: Code Execution Result for UN: '{username}' Could not be published to Result MQ.\n[MQ EXCEPTION]: {str(e)}"
             )
             message = "error-publishing-to-code-exececution-result-mq"
             return False, message
