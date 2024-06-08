@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rcee.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rcee.settings.dev")
 
 application = get_wsgi_application()
