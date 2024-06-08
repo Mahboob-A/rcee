@@ -47,31 +47,26 @@ def callback(channel, method, properties, body):
             user_codes=processed_data, submission_id=data.get("submission_id")
         )
 
-        # put the user details in the final result.
+        # put the user details and submission id in the final result.
         result_data["user_details"] = data["user_details"]
         result_data["submission_id"] = data.get("submission_id")
 
         logger.info(
-            f"[Code EXEC Success]: Code Consume and Execution Successful for Username: {username}"
+            f"\n\n[Code EXEC Success]: Code Consume and Execution Successful for Username: {username}"
         )
-        # print("\n\nEXEC Result in RCE Engine: ", result_data)
-
+        
         # Publish the result to the Result Queue as JSON
         result_data = json.dumps(result_data)
         result_producer_mq.publish_data(result_data=result_data, username=username)
 
-        logger.info(
-            f"[Code Result Publish Success]: Code Result Publish Successful for Username: {username}"
-        )
-
     except Exception as e:
         logger.exception(
-            f"[MQ Callback EXCEPTION]: Exception Occurred at Callback.\n[EXCEPTION]: {str(e)}"
+            f"\n\n[MQ Code Submision Consume ERROR]: Exception Occurred at Callback .\n[EXCEPTION]: {str(e)}"
         )
         logger.error("\nTraceback")
         traceback.print_exc()
 
 
 def main():
-    logger.info(f"\n[In MAIN]: In main Func of Callback.")
+    logger.info(f"\n\n[In MAIN]: In main Func of Code Submission ConsumeCallback .")
     code_submission_consumer_mq.consume_messages(callback=callback)

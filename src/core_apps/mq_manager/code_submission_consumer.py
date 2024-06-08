@@ -55,15 +55,15 @@ class CodeSubmissionConsumerMQ(CloudAMQPHandler):
             )
 
             logger.info(
-                f"\n[MQ Consume BEGIN]: Message Consumption from Code Submisison Queue Started."
+                f"\n\n[MQ Code Submission Consumer BEGIN]: Message Consumption from Code Submisison Queue Started."
             )
             self.channel.start_consuming()
             logger.info(
-                f"\n[MQ Consume SUCCESS]: Message Consuming Finished from Code Submission Queue."
+                f"\n\n[MQ Code Submission Consume SUCCESS]: Message Consuming Finished from Code Submission Queue."
             )
         except Exception as e:
             logger.exception(
-                f"\n[MQ Consumer EXCEPTION]: Exception Occurred During Cnsuming Messages from Code Submission MQ\n[EXCEPTION]: {str(e)}\n"
+                f"\n\n[MQ Code Submission Consumer EXCEPTION]: Exception Occurred During Cnsuming Messages from Code Submission MQ\n[EXCEPTION]: {str(e)}\n"
             )
 
 
