@@ -1,0 +1,26 @@
+# version: "3.9"
+
+services: 
+  rce-judge-engine: 
+    restart: always 
+    build: 
+      context: . 
+      dockerfile: ./docker/production/django/Dockerfile 
+    volumes: 
+        - /var/run/docker.sock:/var/run/docker.sock 
+        - user_code_files:/app/user-files
+    env_file: 
+        - ./.envs/.production/.django 
+    networks: 
+        - production-algocode-rcee-service-network
+
+
+# TODO Create the network in the Server. 
+networks:
+  production-algocode-rcee-service-network: 
+    external: true 
+
+# TODO Create the volume in the Server. 
+volumes:
+  user_code_files: 
+    external: true 

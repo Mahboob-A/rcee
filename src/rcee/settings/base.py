@@ -16,8 +16,7 @@ import environ
 
 env = environ.Env()
 
-# TODO hange the env type: .dev for development. .production for production
-ENVIRONMENT_TYPE = ".dev"
+ENVIRONMENT_TYPE = ".production"
 
 # this effectively pointing to the SRC dir where the manage.py file is located.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -132,7 +131,7 @@ USE_TZ = True
 SITE_ID = 1
 
 # NOTE No admin url is needed as there are no model in the service and as it is only meant to executing the cpp codes 
-# consumed from the cpp code submission queue. 
+# consumed from the cpp code submission queue. No server will be running, the service will only consume and produce. 
 # ADMIN_URL = env("ADMIN_URL")
 
 

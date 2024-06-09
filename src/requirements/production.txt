@@ -1,11 +1,4 @@
 -r base.txt 
 
-# psycopg2-binary==2.9.5
-# gunicorn==22.0.0
-
-# # to serve static files wihtout need of separate web server eg: nginx 
-# whitenoise==6.6.0
-
-
 # As the RCE Engine is only meant to execute the cpp code of users and it doesnot have any 
-# model, hence, no need to run the server and no need of admin.  
+# model, hence, no need to run the server and no need of admin.  (gunicorn or nginx)
