@@ -33,6 +33,7 @@ staticfiles/
 mediafiles/
 user-files/
 user-codes/
+install.txt
 
 
 # PyInstaller

@@ -22,10 +22,6 @@ class CodeContainerHandler:
     def __init__(self) -> None:
         self.__client = docker.from_env()
 
-    def __get_current_time(self):
-        """Return current time to measure container runtime"""
-        return time.time()
-
     def __get_formated_data(self, status_code: int, logs: str):
         """Return formated docker stdout and stderr data"""
 
@@ -104,7 +100,7 @@ class CodeContainerHandler:
         # but message does not dictate if any g++ related compilation or other error happened.
         # the data dict will have the details of the resullt of the program.
 
-        start_time = self.__get_current_time()
+        start_time = time.perf_counter()
         container_error_message = None
         data = {}
         cont_ulimits = [
@@ -141,10 +137,6 @@ class CodeContainerHandler:
                 # security_opt=["seccomp", "default"],
             )
 
-            # long polling
-            # short polling
-            # server sent event: sse
-
             try:
                 cont.reload()
                 result = cont.wait(timeout=6)
@@ -160,6 +152,8 @@ class CodeContainerHandler:
             logs = cont.logs().decode("utf-8")
             status_code = result.get("StatusCode")
 
+            # get end time
+            end_time = time.perf_counter()
             # formatted data. as control here, the code compiled and run.
             data = self.__get_formated_data(status_code=status_code, logs=logs)
 
@@ -186,10 +180,10 @@ class CodeContainerHandler:
         finally:
             cont.stop(timeout=0)
             cont.remove()
-
-        end_time = self.__get_current_time()
+            
+        final_time = end_time - start_time 
         logger.info(
-            f"\n\n[Container Total Time]: Submission ID: {submission_id}: {end_time - start_time} Seconds.\n"
+            f"\n\n[Container Total Time]: Submission ID: {submission_id}: {final_time:.2f} Seconds.\n"
         )
 
         return container_error_message, data
