@@ -152,8 +152,6 @@ class CodeContainerHandler:
             logs = cont.logs().decode("utf-8")
             status_code = result.get("StatusCode")
 
-            # get end time
-            end_time = time.perf_counter()
             # formatted data. as control here, the code compiled and run.
             data = self.__get_formated_data(status_code=status_code, logs=logs)
 
@@ -180,7 +178,9 @@ class CodeContainerHandler:
         finally:
             cont.stop(timeout=0)
             cont.remove()
-            
+        
+        # get end time
+        end_time = time.perf_counter()
         final_time = end_time - start_time 
         logger.info(
             f"\n\n[Container Total Time]: Submission ID: {submission_id}: {final_time:.2f} Seconds.\n"

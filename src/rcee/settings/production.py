@@ -7,44 +7,37 @@ from .base import env  # noqa: E501
 # Django project general settings.
 ADMINS = [("Mahboob Alam", "iammahboob.a@gmail.com")]
 SECRET_KEY = env("DJANGO_SECRET_KEY")
-ADMIN_URL = env("ADMIN_URL")
-DATABASES = {"default": env.db("DATABASE_URL")}
 
 
-# Django security settings.
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["rcee.algocode.site"])
+# No need, as no direct connection with RCE Engine available.
+# CSRF_TRUSTED_ORIGINS = ["https://rcee.algocode.site", "https://algocode.site"]
+# ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["rcee.algocode.site"])
 
-CSRF_TRUSTED_ORIGINS = ["https://rcee.algocode.site", "https://algocode.site"]
-
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=True)
-
-
-# TODO caution. 518400 seconds as 6 days. use wisely.
-SECURE_HSTS_SECONDS = 60
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
-    "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True
-)
-
-SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
-    "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
-)
-
-# Static file content host
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 SITE_NAME = "Algocode - The Modern Leetcode!"
+
+# Config for MQ: Code Submission Consume
+CLOUD_AMQP_URL = env("CLOUD_AMQP_URL")
+CPP_CODE_SUBMISSION_EXCHANGE_NAME = env("CPP_CODE_SUBMISSION_EXCHANGE_NAME")
+CPP_CODE_SUBMISSION_EXCHANGE_TYPE = env("CPP_CODE_SUBMISSION_EXCHANGE_TYPE")
+CPP_CODE_SUBMISSION_QUEUE_NAME = env("CPP_CODE_SUBMISSION_QUEUE_NAME")
+CPP_CODE_SUBMISSION_BINDING_KEY = env("CPP_CODE_SUBMISSION_BINDING_KEY")
+CPP_CODE_SUBMISSION_ROUTING_KEY = env("CPP_CODE_SUBMISSION_ROUTING_KEY")
+
+# Config for MQ: Result Publish Produce
+RESULT_PUBLISH_EXCHANGE_NAME = env("RESULT_PUBLISH_EXCHANGE_NAME")
+RESULT_PUBLISH_EXCHANGE_TYPE = env("RESULT_PUBLISH_EXCHANGE_TYPE")
+RESULT_PUBLISH_QUEUE_NAME = env("RESULT_PUBLISH_QUEUE_NAME")
+RESULT_PUBLISH_BINDING_KEY = env("RESULT_PUBLISH_BINDING_KEY")
+RESULT_PUBLISH_ROUTING_KEY = env("RESULT_PUBLISH_ROUTING_KEY")
 
 
 ########################################################
 # logging
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "filters": {"require_debug_false": {"()": "django.utils.log.RequieDebugFalse"}},
+    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
     "formatters": {
         "verbose": {
             "format": "%(levelname)s  %(asctime)s %(module)s  %(process)d %(thread)d %(message)s "

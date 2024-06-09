@@ -6,7 +6,7 @@ FROM python:${PYTHON_VERSION} as python
 # stage 01: build dependency wheel 
 FROM python as python-build-stage 
 
-ARG BUILD_ENVIRONMENT=dev 
+ARG BUILD_ENVIRONMENT=production
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
         build-essential
@@ -22,7 +22,7 @@ RUN pip wheel --wheel-dir /usr/src/app/wheel \
 FROM python as python-run-stage 
 
 # args 
-ARG BUILD_ENVIRONMENT=dev 
+ARG BUILD_ENVIRONMENT=production
 ARG APP_HOME=/app 
 
 # env 
@@ -45,12 +45,12 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 
 RUN curl -sSL https://get.docker.com/ | sh
 
-COPY ./docker/dev/django/start.sh /app/docker/dev/django/start.sh 
+COPY ./docker/production/django/start /start 
 
-RUN sed -i 's/\r$//g' /app/docker/dev/django/start.sh
+RUN sed -i 's/\r$//g' /start
 
-RUN chmod +x /app/docker/dev/django/start.sh
+RUN chmod +x /start
 
 COPY . ${APP_HOME}
 
-ENTRYPOINT [ "sh", "/app/docker/dev/django/start.sh" ]
+ENTRYPOINT [ "/start" ]
