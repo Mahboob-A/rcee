@@ -99,7 +99,7 @@ The `C++ Judge` in the RCE Engine works in `sibling containers` architecture. Th
 
 A separate light-weight `prototype` for the `C++ Judge` is also available. This prototype is a `PoC` for the `C++ Judge` and easier to test and manage. It can handle API requests as well as preset question to test the `PoC` of `C++ Judge`. 
 
-**Please visit the <a href="https://github.com/Mahboob-A/online-judge">Online Judge</a> to learn more about the `Prototype` of the `C++ Judge`. It has more detailed and analytical comparisons between the various state of the `C++ Judge`.**
+**Please visit the <a href="https://github.com/Mahboob-A/online-judge?tab=readme-ov-file#faq">FAQ of Online Judge</a> to learn more about the `Prototype` of the `C++ Judge`. It has more detailed and analytical comparisons between the various state of the `C++ Judge`.**
 
 
 <br/>
