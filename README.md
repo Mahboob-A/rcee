@@ -144,6 +144,57 @@ You are always welcome to contribute to the project. Please `open an issue` or `
 <br/>
 <br/>  
 
+</details>
+<details>
+  <summary><h3 align="center">Code Submission Result Examples</h3></summary>
+
+<br/>
+
+#### Some Code Submission Result Snapshots
+
+<br/> 
+
+##### A. AC Solution 
+
+ ![dd8dbfe4-621b-49f1-b3a6-7ab2a892db87](https://github.com/Mahboob-A/algocode/assets/109282492/378d23ae-e059-47eb-866d-7c73d329b430) 
+<br/>
+<br/>
+
+##### B. WA Solution 
+
+  ![bedb4255-86c9-4417-b920-5976e6129cbb](https://github.com/Mahboob-A/algocode/assets/109282492/69bce2c1-5e16-4685-9069-23492068b55e)
+<br/>
+<br/>
+
+##### C. Compilation Error
+
+![1c5edd39-8ccd-4e23-a61d-66ae9564ca85](https://github.com/Mahboob-A/algocode/assets/109282492/9df40b17-b3f9-48d4-9662-3acdc1f594b8) 
+<br/>
+<br/>
+
+
+##### D. Segmentation Fault 
+
+![WhatsApp Image 2024-06-05 at 11 42 42 PM (1)](https://github.com/Mahboob-A/algocode/assets/109282492/0a3e1d3f-bafb-41a4-8f30-29eb5a9133e5)
+<br/>
+<br/>
+
+
+##### E. Memory Limit Exceed
+
+![WhatsApp Image 2024-06-05 at 11 42 03 PM (1)](https://github.com/Mahboob-A/algocode/assets/109282492/766f01f7-e97a-4aa7-858a-d7dddbf89b7d)
+<br/>
+<br/>
+
+
+##### F. Time Limit Exceed 
+
+![WhatsApp Image 2024-06-05 at 11 42 03 PM (1)](https://github.com/Mahboob-A/algocode/assets/109282492/766f01f7-e97a-4aa7-858a-d7dddbf89b7d)
+<br/>
+<br/>
+
+<br/>
+
 </details><br/>
 
 <a href="https://www.linux.org/" target="blank">
