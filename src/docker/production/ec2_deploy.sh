@@ -19,7 +19,7 @@ fi
 
 # upload from currnet branch/directory (go to the branch form where the deployment should be uploaded.)
 # tar --exclude='.git' --exclude='docker/production/ec2_deploy.sh' -cvf ./production_project.tar .
-tar --exclude='.git' -cvf ./production_project.tar .
+tar --exclude='.git' --exclude='venv' --exclude='staticfiles' --exclude='user-files' --exclude='install.txt' --exclude='__pycache__' -cvf ./production_project.tar .
 
 
 echo "Uploading the Project to the server ... " 
