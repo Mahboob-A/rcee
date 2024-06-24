@@ -9,7 +9,7 @@
 Algocode is a DSA practice platform just like Leetcode!
 <br/>
 <br/>
-<a href="https://github.com/Mahboob-A/algocode-auth"><strong>Read the blog »</strong></a>
+<a href="https://imehboob.medium.com/my-experience-building-a-leetcode-like-online-judge-and-how-you-can-build-one-7e05e031455d"  target="_blank" ><strong>Read the blog »</strong> </a>
 <br/>
 <br/>
 <a href="https://github.com/Mahboob-A/algocode-auth">Algocode Auth Service .</a>  
@@ -105,7 +105,35 @@ A separate light-weight `prototype` for the `C++ Judge` is also available. This 
 <br/>
 <br/>  
 
-</details><details>
+</details>
+
+
+
+<details>
+<summary><h3 align="center">Watch In Action</h3></summary>
+
+
+#### A. Long Video (Describes all the features and architecture)
+- Watch from `16:30` for code execution begin and  `18:30` for code submission result. 
+
+<a href="https://www.youtube.com/watch?v=TbiRWL-11Fo&t=990s" target="_blank">
+  <img src="https://img.youtube.com/vi/TbiRWL-11Fo/0.jpg" alt="Watch the video">
+</a>
+
+#### B. Short Video (Only core features) 
+- Watch from `09:30` for code execution begin and  `11:30` for code submission result. 
+
+<a href="https://www.youtube.com/watch?v=EgtAEjH53BA&t=571s" target="_blank">
+  <img src="https://img.youtube.com/vi/EgtAEjH53BA/0.jpg" alt="Watch the video">
+</a>
+
+
+</details>
+
+
+
+
+<details>
 <summary><h3 align="center">Workflow - RCE Engine</h3></summary>
 
 
@@ -246,7 +274,24 @@ You are always welcome to contribute to the project. Please `open an issue` or `
 
 #### 🔗 Links
 
+[![Email Me](https://img.shields.io/badge/mahboob-black?style=flat&logo=gmail)](mailto:connect.mahboobalam@gmail.com?subject=Hello) 
+  <a href="https://twitter.com/imahboob_a" target="_blank">
+    <img src="https://img.shields.io/badge/Twitter-05122A?style=flat&logo=twitter&logoColor=white" alt="Twitter">
+  </a>
+  <a href="https://linkedin.com/in/i-mahboob-alam" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-05122A?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+  <a href="https://hashnode.com/@imehboob" target="_blank">
+    <img src="https://img.shields.io/badge/Hashnode-05122A?style=flat&logo=hashnode&logoColor=white" alt="Hashnode">
+  </a>
+  <a href="https://medium.com/@imehboob" target="_blank">
+    <img src="https://img.shields.io/badge/Medium-05122A?style=flat&logo=medium&logoColor=white" alt="Medium">
+  </a>
+  <a href="https://dev.to/imahboob_a" target="_blank">
+    <img src="https://img.shields.io/badge/Dev.to-05122A?style=flat&logo=dev.to&logoColor=white" alt="Devto">
+  </a>
+  <a href="https://www.leetcode.com/mahboob-alam" target="_blank">
+    <img src="https://img.shields.io/badge/LeetCode-05122A?style=flat&logo=leetcode&logoColor=white" alt="LeetCode">
+  </a>
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/i-mahboob-alam/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/iMahboob_A)
 <br/>
